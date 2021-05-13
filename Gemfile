@@ -57,5 +57,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # custom gems
 gem 'wicked'
+gem 'devise'
 gem 'simple_form'
 gem 'simple_form-tailwind'
+gem 'email_validator'
+gem 'countries'
+gem 'language_list'

@@ -1,0 +1,4 @@
+<%= simple_form_for @user, url: wizard_path(:interests), method: :put do |f| %>
+  <%= f.input :interest_ids, as: :check_boxes, collection: @interests, input_html: { multiple: true } %>
+  <%= f.button :submit %>
+<% end %>
