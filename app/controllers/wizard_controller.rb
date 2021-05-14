@@ -69,7 +69,7 @@ class WizardController < ApplicationController
   end
 
   def interests_params
-    params.require(:user).permit(interest_ids: [])
+    params.require(:user).permit(:biography, interest_ids: [])
   end
 
 end
