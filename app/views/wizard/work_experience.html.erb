@@ -23,6 +23,9 @@
         <% if work_experience.country.present? %>
           <p class="leading-normal text-gray-700">Country: <%= work_experience.country.name %></p>
         <% end %>
+        <div class="h-6">
+          <%= link_to "Delete", work_experience_path(work_experience.id), method: :delete, class: 'h-full flex justify-center px-6 m-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800' %>
+        </div>
       </div>
     </div>
   <% end %>
