@@ -3,24 +3,27 @@
   <%= f.input :end_at, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year, discard_day: true, order: [:month, :year] %>
   <%= f.input :active, as: :boolean, checked_value: true, unchecked_value: false %>
   <%= f.input :organization_name %>
-  <%= f.input :country_id, collection: @countries %>
+  <%= f.input :country_id, collection: @countries, include_blank: false %>
   <%= f.button :submit, 'Add Work Experience' %>
+  <%= f.button :submit, 'Add Work Experience & Continue' %>
 <% end %>
 
-<% @user.work_experiences.persisted.each do |work_experience| %>
-  <div class="max-w-xs overflow-hidden rounded-lg shadow-lg mt-5">
-    <div class="px-6 py-4">
-      <h4 class="mb-3 text-xl font-semibold tracking-tight text-gray-800"><%= work_experience.organization_name %></h4>
-      <% if work_experience.active? %>
-        <p class="leading-normal text-gray-700">From: <%= work_experience.start_at %></p>
-        <p class="leading-normal text-gray-700">To: Until now</p>
-      <% else %>
-        <p class="leading-normal text-gray-700">From: <%= work_experience.start_at %></p>
-        <p class="leading-normal text-gray-700">To: <%= work_experience.end_at %></p>
-      <% end %>
-      <% if work_experience.country.present? %>
-        <p class="leading-normal text-gray-700">Country: <%= work_experience.country.name %></p>
-      <% end %>
+<div class="flex flex-wrap">
+  <% @user.work_experiences.persisted.each do |work_experience| %>
+    <div class="max-w-xs overflow-hidden rounded-lg shadow-lg mt-5 flex-grow ">
+      <div class="px-6 py-4">
+        <h4 class="mb-3 text-xl font-semibold tracking-tight text-gray-800"><%= work_experience.organization_name %></h4>
+        <% if work_experience.active? %>
+          <p class="leading-normal text-gray-700">From: <%= work_experience.start_at %></p>
+          <p class="leading-normal text-gray-700">To: Until now</p>
+        <% else %>
+          <p class="leading-normal text-gray-700">From: <%= work_experience.start_at %></p>
+          <p class="leading-normal text-gray-700">To: <%= work_experience.end_at %></p>
+        <% end %>
+        <% if work_experience.country.present? %>
+          <p class="leading-normal text-gray-700">Country: <%= work_experience.country.name %></p>
+        <% end %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

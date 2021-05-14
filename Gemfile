@@ -50,6 +50,15 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing
+  gem 'database_cleaner'
+  # factory_bot is a fixtures replacement with a straightforward definition syntax
+  gem 'factory_bot'
+  # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
+  gem 'rspec-rails'
+  # Simple one-liner tests for common Rails functionality https://matchers.shoulda.io
+  gem 'shoulda-matchers'
+  gem 'rexml'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -57,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # custom gems
 gem 'wicked'
+gem 'interactor'
 gem 'devise'
 gem 'simple_form'
 gem 'simple_form-tailwind'

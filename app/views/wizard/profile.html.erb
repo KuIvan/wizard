@@ -4,7 +4,7 @@
   <%= f.input :email %>
   <%= f.input :address %>
   <%= f.input :gender, as: :radio_buttons, collection: User.genders.keys.map { |key| [key, key.titleize] }, label_method: :second, value_method: :first, checked: @user.gender %>
-  <%= f.input :language_id, collection: @languages %>
-  <%= f.input :country_id, collection: @countries %>
+  <%= f.input :language_id, collection: @languages, include_blank: false %>
+  <%= f.input :country_id, collection: @countries, include_blank: false %>
   <%= f.button :submit %>
 <% end %>

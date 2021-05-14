@@ -18,12 +18,13 @@ class WorkExperience < ApplicationRecord
   scope :persisted, -> { where.not(id: nil) }
 
   private
+
   def determine_end_at
     self.end_at = nil if active
   end
 
   def end_at_date
-    if start_at > end_at
+    if start_at.present? && end_at.present? && start_at > end_at
       errors.add(:start_at, "cannot be bigger than end date")
       errors.add(:end_at, "cannot be smaller than start date")
     end

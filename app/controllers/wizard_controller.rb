@@ -25,18 +25,15 @@ class WizardController < ApplicationController
     case step
     when :profile
       load_profile_collections
-      @user.attributes = user_params
-      # NOTE: just authorize temporary user for DEMO purposes
-      unless @user.persisted?
-        password = Devise.friendly_token.first(6)
-        @user.password = password
-        @user.password_confirmation = password
-      end
-      @user.save
-      bypass_sign_in(@user) # needed for devise
+      # NOTE: just create/update & authorize temporary user for DEMO purposes
+      service = SaveTemporaryUser.call({user: @user, params: user_params})
+      bypass_sign_in(service.user) # needed for devise
     when :work_experience
       load_work_exp_collections
       @work_experience = @user.work_experiences.create(work_experience_params)
+      if @work_experience.persisted? && params[:commit] == 'Add Work Experience'
+        return redirect_to wizard_path(:work_experience)
+      end
     when :interests
       load_interests_collections
       @user.update(interests_params)
@@ -72,7 +69,7 @@ class WizardController < ApplicationController
   end
 
   def interests_params
-    params.require(:user).permit(:interest_ids)
+    params.require(:user).permit(interest_ids: [])
   end
 
 end
